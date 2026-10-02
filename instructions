@@ -1,0 +1,69 @@
+Create unity project
+
+Go in package manager through the window tab and make sure assets are imported in the project panel
+
+Then double go to assets - scene - low poly - scenes - then double click to bring it on the main panel
+
+To render assets go to  low poly - materials - select all of them and go to edit - rendering - materials - convert to urp
+
+Add doors and walls accordingly before doing xr setup
+
+Go to the package manager store - select unity registry - xr interaction toolkit - under samples tab import starter assets and xr device simulator
+
+Then in the project panel - assets - samples - xr toolkit - 2.6.5 - add XR Device Simulator to the scene by double clicking
+
+(Make sure there is only 1 main camera in your scene)
+
+Then in - assets - samples - xr toolkit - 2.6.5 - starter assets - prefabs - add XR origin XR rig (drag and drop)
+
+Select XR Rig - in the inspector panel - add component - search input action manager and add it - after adding under input manager click the + sign which adds 1 element and select XRI default input action
+
+Import simple gems assets through package manager
+
+Create a game object and rename it to gems - add gems through prefabs and put under the gems class - rename each to 1,2,3 respectively - resize them using scaling in inspector panel - place them anywhere in the room - in inspector panel under simple gems script - uncheck (is floating, use easing floating, is scaling, use easing scaling) all these - add component sphere collider and xr grab interactable - also uncheck use gravity - do these for all 3 gems
+
+Create an empty class and rename it to the treasure chest - add chest model from prefabs - put the model under the treasure chest class - resize accordingly - also add box collider to the chest through add component -
+
+Create empty in the chest class and rename it gem sockets - under gemsocket - add a cube - resize and place it in the chest - *check is trigger (without this gem won't be placed)*- add component - xr socket interactor - also add xr interaction manager once again in interaction manager - duplicate the cube 2 times
+
+Spawn Points
+
+Create empty spawn Points Class - add cube in the same class and rename it to spawn point 1 - duplicate it 5 times until point 6 - place them in the room - uncheck mesh render
+
+Create an empty Gemspawner - create a c# script - add gems spawn manager code - save - select gem spawner class and drag drop the c# script in the inspector panel - manually add 3 gems and 6 spawn point in the inspector panel from the hierarchy window - save
+
+You can rename your main sample scene from the hierarchy window to avoid confusion while creating the main menu ui (if you want create a new folder under project section and rename it to scenes where your main menu, and main scene will be stored)
+
+Go to file - new scene - save as main menu - file - building settings - in the scenes in buil window delete any scenes if they are already there and click  Add open scenes (always add main menu first and then your main scene) - repeat the same process for your main scene by going to into build settings and click add open scene
+
+*You can access your recent scenes through - file - open recent scenes*
+
+File - open recent scenes - main menu - add a canvas through UI - right click canvas and add raw image to it - drag the raw image until it fits the screen - create a start game, exit game and puzzle room ui - right click and add button textmeshpro - rename the button to start - add Start game text through text input on inspector panel and resize accordingly - do the same for exit game button by duplicating it
+
+Create empty as Mainmenumanger - add a c# script, add mainmenumanager code to it - paste the script in the created empty object - go to start button - in the on click () tab - click + - drag and drop main menu manger into None(object) - then from dropdown select mainmenumanager - select start game - do the same for exit button - but select exit game in the function tab
+
+Add Gems Counter
+
+Go to the puzzle room scene - add canvas if not there - add text mesh pro - rename it to gems counter - in text add gems 0/3
+
+Create c# script - gemcounterUI - add the code - create an empty gemcounterUI - add the script to it - place the gem counter text mesh pro into the script inspector panel
+
+Create an empty gem collection manager - create a c# script, add code to it - drag and drop into an inspector like the previous one - in the counter UI add the gems counter from the hierarchy window
+
+Go to the GemsSocket- select all the socketsive together- Xr socket interactor - select entered - click + - select exited click + -drag and drop gems collection manager object into both of them - in function - gem collection manager - select gem placed - and gem removed for another one - save it
+
+Select left and right door - add component box collider - create script and add door open (big script in prac8) code to it - then select 99_Doors - add the script to it - then add left door and right door to the inspector panel respectively - also add camera in 99_doors by right click - drop it in inspector - adjust camera
+
+*Also after adding the big script remove // comment tag from the previously done code so that door controller class can be identified and the next step can be done*
+
+Go to gem collection manager - drag and drop 99_doors into Door controller tab - save
+
+Create empty as Exit Trigger - add box collider to it - place it in exit room - resize it accordingly - *check is trigger*
+
+Create an empty canvas - name it completionUI - add image to it - colour it - add text as game completed - add two buttons with restart and exit -
+
+Create an empty rename it Exit Trigger - add code to it - in the inspector panel add game completion UI
+
+Create an empty game completion manager -
+
+Go to the restart game tab - in on click - click + - add game complete manager script to both - add function re-start game() and exit game() function respectively
