@@ -1,0 +1,66 @@
+DoorTrigger.cs
+
+using UnityEngine;
+
+public class DoorTrigger : MonoBehaviour
+{
+    public DoorController door;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            door.OpenDoors();
+        }
+    }
+}
+
+DoorController.cs
+
+using UnityEngine;
+
+public class DoorController : MonoBehaviour
+{
+    public Transform leftDoor;
+    public Transform rightDoor;
+    public Camera cutsceneCamera;
+
+    bool open = false;
+    float timer = 0;
+
+    void Start()
+    {
+        cutsceneCamera.enabled = false;
+    }
+
+    void Update()
+    {
+        if (open)
+        {
+            timer += Time.deltaTime;
+
+            leftDoor.localRotation = Quaternion.Lerp(
+                leftDoor.localRotation,
+                Quaternion.Euler(0, -90, 0),
+                Time.deltaTime * 2
+            );
+
+            rightDoor.localRotation = Quaternion.Lerp(
+                rightDoor.localRotation,
+                Quaternion.Euler(0, 90, 0),
+                Time.deltaTime * 2
+            );
+
+            if (timer >= 3)
+            {
+                cutsceneCamera.enabled = false;
+            }
+        }
+    }
+
+    public void OpenDoors()
+    {
+        cutsceneCamera.enabled = true;
+        open = true;
+    }
+}
